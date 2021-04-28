@@ -16,17 +16,19 @@ menuItems:any;
       console.log(p);
     });
   }
-
   onSubmit(m:any,qty:string) {
-    console.log(m);
     let quantity=parseInt(qty);
     if(quantity==0) {
       alert('Quantity entered is Zero!');
     }
     else {
-      let order1={"FoodID":m.FoodID,"foodName":m.foodName,"cost":m.cost,"quantity":quantity};
+      let totalCost:number=(m.cost*quantity);
+      let order1={"FoodID":m.FoodID,"foodName":m.foodName,"quantity":quantity,"cost":m.cost,"totalCost":totalCost};
       this.cart.addObject(order1);
     }
+  }
+  onDelete(m:any) {
+    this.cart.deleteObject(m.FoodID);
   }
 
   ngOnInit(): void {

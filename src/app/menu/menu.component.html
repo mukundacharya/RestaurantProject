@@ -66,15 +66,22 @@
         <div class="row mar">
             <div class="col-lg-3 col-md-4 col-sm-12 mar1" *ngFor="let m of menuItems">
                 <div class="card" style="text-align: center;">
-                    <img src="{{m.foodImage}}" class="card-img-top" height="195px">
+                    <img src="{{m.foodImage}}"  id="img2" class="card-img-top" height="195px">
                     <div class="card-body">
-                        <h5 class="card-title">{{m.foodName}}</h5>
+                        <h4 class="card-title">{{m.foodName}}</h4>
+                        <h6 *ngIf="m.isVeg;else elseBlock">
+                            <span style="color: green; font-weight: bold;">Veg</span>
+                        </h6>
+                        <ng-template #elseBlock>
+                            <h6><span style="color: red; font-weight: bold;">Non-Veg</span></h6>
+                        </ng-template>
                         <p class="card-text" style="font-weight: bold;">Rs. {{m.cost}}</p>
                         <p class="card-text">{{m.foodDescription}}</p>
                     <form style="margin-bottom: 10px;">
                         <input type="number"  #qtytxtbox value="1" style="text-align: center" min="0" max="10" id ="quantityTxt" />   
                     </form>
-                        <button class="btn btn-primary" (click)="onSubmit(m,qtytxtbox.value)">Order</button>
+                        <button class="btn btn-primary" (click)="onSubmit(m,qtytxtbox.value)" style="margin-bottom: 5px;;">Add To Cart</button><br>
+                        <button class="btn btn-danger" (click)="onDelete(m)">Remove from Cart</button>
                     </div>
                 </div>
             </div>
