@@ -1,0 +1,28 @@
+<div class="back"> 
+    <img src="assets/chefback.jpg" alt="" style="height:100%; width:155%"> 
+<div id="p">
+    <img src="assets/chefpic.jpg" alt="" style="height: 500px; width: 800px; border-radius: 15px;">
+   
+<div id="mydiv">
+    <div class="wrapper">
+        <div class="title">
+  Login Chef !!</div>
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)">
+          <div class="field">
+            <input type="text" required style="margin-top: 20px;" name="username" ngModel>
+            <label>Username</label>
+          </div>
+  <div class="field">
+            <input type="password" required style="margin-top: 20px;"  name="password" ngModel>
+            <label>Password</label>
+          </div>
+
+  <div class="field">
+            <input type="submit" value="Login" style="margin-top: 90px;" [disabled]="loginForm.invalid">
+          </div>
+  </form>
+  </div>
+</div>
+</div>
+
+</div>
