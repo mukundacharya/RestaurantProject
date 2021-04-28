@@ -7,6 +7,38 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CartServicesService {
   cartItems:BehaviorSubject<Array<any>>=new BehaviorSubject<Array<any>>([]);
+  cartItemID:BehaviorSubject<Array<number>>=new BehaviorSubject<Array<number>>([]);
+  totcost:number=0;
+  insertCartID(id:number) {
+    let ind:number[]
+    this.cartItemID.subscribe(p => {
+      ind=p;
+    })
+    ind.push(id);
+    this.cartItemID.next(ind);
+  }
+
+  removeCartID(id:number) {
+    let ind:number[]
+    this.cartItemID.subscribe(p => {
+      ind=p;
+    })
+    let index = ind.indexOf(id);
+    if(index > -1) {
+      ind.splice(index,1);
+    }
+    else {
+      console.log("INVALID");
+    }
+  }
+
+  checkCartID(id:number) {
+    let ind:number[]
+    this.cartItemID.subscribe(p => {
+      ind=p;
+    })
+    return (ind.includes(id));
+  }
 
   storeCartItems(passedObjectArray) {
     this.cartItems.next(passedObjectArray);
@@ -35,9 +67,40 @@ export class CartServicesService {
     let strobjs=JSON.stringify(objs);
     let jsonobjs=JSON.parse(strobjs);
     jsonobjs.push(toBeAdded);
+    let indx=toBeAdded.FoodID;
+    this.insertCartID(indx);
     this.cartItems.next(jsonobjs);
+    console.log(jsonobjs)
+    this.getTotalCost();
+    alert('Order Placed!')
+  }
+
+  deleteObjectWoMessage(FoodID:number) {
+    let objs:any;
+    this.cartItems.subscribe(p => {
+      objs=p;
+    })
+    let strobjs=JSON.stringify(objs);
+    let jsonobjs=JSON.parse(strobjs);
+    const index = jsonobjs.findIndex(x => x.FoodID === FoodID);
+    console.log(index);
+    if (index !== -1)  
+    {
+      jsonobjs.splice(index, 1);
+    this.cartItems.next(jsonobjs);
+    console.log(jsonobjs);
+    this.removeCartID(FoodID);
+    }
+    else {
+      alert('Not Present in orders!');
+    }
     this.getTotalCost();
   }
+
+
+
+
+
 
   deleteObject(FoodID:number) {
     let objs:any;
@@ -52,13 +115,14 @@ export class CartServicesService {
     {
       jsonobjs.splice(index, 1);
     this.cartItems.next(jsonobjs);
+    console.log(jsonobjs);
+    this.removeCartID(FoodID);
     alert('Order Removed from Cart!')
     }
     else {
       alert('Not Present in orders!');
     }
     this.getTotalCost();
-    console.log(jsonobjs);
   }
 
   constructor() { }

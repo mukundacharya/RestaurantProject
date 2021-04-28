@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a routerLink="/home" class="navbar-brand" >Mylari</a>
+        <a routerLink="/home" class="navbar-brand">Mylari</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -66,7 +66,7 @@
         <div class="row mar">
             <div class="col-lg-3 col-md-4 col-sm-12 mar1" *ngFor="let m of menuItems">
                 <div class="card" style="text-align: center;">
-                    <img src="{{m.foodImage}}"  id="img2" class="card-img-top" height="195px">
+                    <img src="{{m.foodImage}}" id="img2" class="card-img-top" height="195px">
                     <div class="card-body">
                         <h4 class="card-title">{{m.foodName}}</h4>
                         <h6 *ngIf="m.isVeg;else elseBlock">
@@ -77,11 +77,14 @@
                         </ng-template>
                         <p class="card-text" style="font-weight: bold;">Rs. {{m.cost}}</p>
                         <p class="card-text">{{m.foodDescription}}</p>
-                    <form style="margin-bottom: 10px;">
-                        <input type="number"  #qtytxtbox value="1" style="text-align: center" min="0" max="10" id ="quantityTxt" />   
-                    </form>
-                        <button class="btn btn-primary" (click)="onSubmit(m,qtytxtbox.value)" style="margin-bottom: 5px;;">Add To Cart</button><br>
+                        <form style="margin-bottom: 10px;">
+                            <input type="number" #qtytxtbox value="1" style="text-align: center" min="1" max="10"
+                                id="quantityTxt" />
+                        </form>
+                        <button class="btn btn-primary" (click)="onSubmit(m,qtytxtbox.value)"
+                            style="margin-bottom: 5px;;">Add To Cart</button><br>
                         <button class="btn btn-danger" (click)="onDelete(m)">Remove from Cart</button>
+                        
                     </div>
                 </div>
             </div>
