@@ -5,18 +5,22 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CartServicesService {
-  cartItems:BehaviorSubject<any>=new BehaviorSubject<any>([]);
+  cartItems:BehaviorSubject<Array<any>>=new BehaviorSubject<Array<any>>([]);
 
   storeCartItems(passedObjectArray) {
     this.cartItems.next(passedObjectArray);
   }
 
   addObject(toBeAdded) {
-    let temp=JSON.stringify(this.cartItems);
-    let currentObjects=JSON.parse(temp);
-    let tba=JSON.parse(toBeAdded);
-    currentObjects.push(tba);
-    this.cartItems.next(currentObjects);
+    let objs:any;
+    this.cartItems.subscribe(p => {
+      objs=p;
+    })
+    let strobjs=JSON.stringify(objs);
+    let jsonobjs=JSON.parse(strobjs);
+    jsonobjs.push(toBeAdded);
+    console.log(jsonobjs);
+    this.cartItems.next(jsonobjs);
   }
 
   constructor() { }

@@ -71,7 +71,10 @@
                         <h5 class="card-title">{{m.foodName}}</h5>
                         <p class="card-text" style="font-weight: bold;">Rs. {{m.cost}}</p>
                         <p class="card-text">{{m.foodDescription}}</p>
-                        <a href="/menu" class="btn btn-primary">Order</a>
+                    <form style="margin-bottom: 10px;">
+                        <input type="number"  #qtytxtbox value="1" style="text-align: center" min="0" max="10" id ="quantityTxt" />   
+                    </form>
+                        <button class="btn btn-primary" (click)="onSubmit(m,qtytxtbox.value)">Order</button>
                     </div>
                 </div>
             </div>
