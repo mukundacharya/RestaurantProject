@@ -48,6 +48,29 @@ export class MenuComponent implements OnInit {
   onDelete(m: any) {
     this.cart.deleteObject(m.FoodID);
   }
+  viewOrdersAlert() {
+    let arr: any;
+    let alertText: string = "Your orders are";
+    this.cart.cartItems.subscribe(p => {
+      arr = p;
+    })
+    let strobjs = JSON.stringify(arr);
+    let jsonobjs = JSON.parse(strobjs);
+    console.log(jsonobjs.length);
+    if (jsonobjs.length == 0) {
+      alert('No Orders Placed!')
+    }
+    else {
+      let j: number;;
+      for (j = 0; j < jsonobjs.length; j++) {
+        alertText += "\n" + jsonobjs[j].foodName + " x " + jsonobjs[j].quantity;
+      }
+      let cost: number = this.cart.getTotalCost();
+      alertText += "\nYour Total price is ₹" + cost;
+      console.log(alertText);
+      alert(alertText);
+    }
+  }
 
   ngOnInit(): void {
   }

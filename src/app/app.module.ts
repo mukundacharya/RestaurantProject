@@ -9,6 +9,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { ChefOrderComponent } from './chef-order/chef-order.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +17,8 @@ import { ContactComponent } from './contact/contact.component';
     LoginComponent,
     MenuComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    ChefOrderComponent,
   ],
   imports: [
     BrowserModule,

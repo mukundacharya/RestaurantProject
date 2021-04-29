@@ -23,6 +23,11 @@
     margin-bottom: 10px;
 }
 
+.bottomright {
+    position: fixed;
+    right:2px;
+    bottom: 3px;
+}
 
 
 

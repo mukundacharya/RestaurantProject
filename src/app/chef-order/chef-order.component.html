@@ -1,0 +1,31 @@
+
+<div class="back" style="height: 1000PX;">
+    <h1 class="quote">" Sharpen your knives chefs "</h1>
+    <h3 class="order">ORDERS</h3>
+    <div class="container">
+    <table class="table table-bordered id">
+        <thead  style="background-color:#343a40;" >
+          <tr>
+            <th class="head" >Order ID</th>
+            <th class="head">Order</th>
+            <th class="head">Quantity</th>
+            <th class="head"style="width: 100px;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let o of orders">
+            <td>{{o.FoodID}}</td>
+            <td >
+              {{o.foodName}}
+            </td>
+            <td>{{o.quantity}}</td>
+            <td>
+                    <label class="form-check-label" for="defaultCheck1">
+                        <button type="button" class="btn btn-danger btn_row_delete">Delete</button>
+                    </label></td>
+          </tr>
+        </tbody>
+      </table>
+    
+    </div>  
+    </div>
