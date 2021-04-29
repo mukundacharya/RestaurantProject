@@ -1,0 +1,85 @@
+<!-- <app-navbar></app-navbar> -->
+<div class="back" style="height: 730px;">
+    <h1 class="quote">" Happy eating "</h1>
+    <h3 class="order"> YOUR ORDERS</h3>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 bottom">
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+              <!--
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+        -->
+            <div class="carousel-inner slider">
+                <div class="carousel-item"  style="text-align:center;"*ngFor="let item of orders let i = index" [ngClass]="{'active': i == 0 }">
+                    <img src="{{item.foodImage}}" class="d-block w-100 pic" alt="..."  style="height: 373px;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{item.foodName}}</h5>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        </div>
+        <div  class="col-lg-6 col-md-6 table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-bordered id bottom">
+        <thead  style="background-color:#343a40;" >
+          <tr>
+            <th class="head" >Food Name</th>
+            <th class="head">Cost</th>
+            <th class="head">Quantity</th>
+            <th class="head">Total Cost</th>
+            <th class="head"style="width: 100px;">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let o of orders">
+            <td>{{o.foodName}}</td>
+            <td>₹{{o.cost}}</td>
+            <td>{{o.quantity}}</td>
+            <td>₹{{o.totalCost}}</td>
+            <td><button type="button" class="btn btn-danger btn_row_delete">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    
+    </div>
+    
+    </div>
+    
+    <div class="row">
+      <div  class="col-lg-6 col-md-6">
+    
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <div class="row">
+          <div class="col-lg-12 bottom" style="margin-top: 10px;">
+            <h2>Total cost : ₹{{totalCost}}</h2>
+          </div>
+          <div  class="col-lg-12 bottom">
+            <button type="button" class="btn btn-success" style="width: 98%;">Place Order</button>
+          </div>
+        </div>
+       
+      </div>
+      
+    
+    </div>
+    
+    </div>  
+    </div>

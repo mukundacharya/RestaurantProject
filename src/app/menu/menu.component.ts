@@ -26,7 +26,7 @@ export class MenuComponent implements OnInit {
         else {
           this.cart.deleteObjectWoMessage(m.FoodID);
           let totalCost: number = (m.cost * quantity);
-          let order1 = { "FoodID": m.FoodID, "foodName": m.foodName, "quantity": quantity, "cost": m.cost, "totalCost": totalCost };
+          let order1 = { "FoodID": m.FoodID, "foodName": m.foodName, "quantity": quantity, "cost": m.cost, "totalCost": totalCost ,"foodImage":m.foodImage};
           this.cart.addObject(order1);
         }
       } else {
@@ -40,7 +40,7 @@ export class MenuComponent implements OnInit {
       }
       else {
         let totalCost: number = (m.cost * quantity);
-        let order1 = { "FoodID": m.FoodID, "foodName": m.foodName, "quantity": quantity, "cost": m.cost, "totalCost": totalCost };
+        let order1 = { "FoodID": m.FoodID, "foodName": m.foodName, "quantity": quantity, "cost": m.cost, "totalCost": totalCost, "foodImage":m.foodImage };
         this.cart.addObject(order1);
       }
     }
