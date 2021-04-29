@@ -12,23 +12,23 @@ export class CartServicesService {
   totcost: number = 0;
   insertCartID(id: number) {
     let ind: number[]
-    this.cartItemID.subscribe(p => {
-      ind = p;
-    })
+    ind=JSON.parse(localStorage.getItem('cartItemID'));
+    if(ind==null) {
+      ind=[];
+    }
     ind.push(id);
+    localStorage.setItem('cartItemID',JSON.stringify(ind));
     let len=ind.length;
     this.totItems.next(len);
-    this.cartItemID.next(ind);
   }
 
   removeCartID(id: number) {
     let ind: number[]
-    this.cartItemID.subscribe(p => {
-      ind = p;
-    })
+    ind=JSON.parse(localStorage.getItem('cartItemID'));
     let index = ind.indexOf(id);
     if (index > -1) {
       ind.splice(index, 1);
+      localStorage.setItem('cartItemID',JSON.stringify(ind));
       let len=ind.length;
       this.totItems.next(len);
     }
@@ -39,9 +39,8 @@ export class CartServicesService {
 
   checkCartID(id: number) {
     let ind: number[]
-    this.cartItemID.subscribe(p => {
-      ind = p;
-    })
+    ind=JSON.parse(localStorage.getItem('cartItemID'));
+    ind=ind==null?[]:ind;
     return (ind.includes(id));
   }
 
@@ -49,12 +48,15 @@ export class CartServicesService {
     this.cartItems.next(passedObjectArray);
   }
   getTotalCost() {
+    /*
     let objs: any;
     this.cartItems.subscribe(p => {
       objs = p;
     })
     let strobjs = JSON.stringify(objs);
     let jsonobjs = JSON.parse(strobjs);
+    */
+    let jsonobjs = JSON.parse(localStorage.getItem('cart'))
     let i: number = 0;
     let totcost: number = 0;
     for (i = 0; i < jsonobjs.length; i++) {
@@ -66,33 +68,40 @@ export class CartServicesService {
   }
 
   addObject(toBeAdded) {
+    /*
     let objs: any;
     this.cartItems.subscribe(p => {
       objs = p;
-    })
-    let strobjs = JSON.stringify(objs);
-    let jsonobjs = JSON.parse(strobjs);
+    })*/
+    let jsonobjs = JSON.parse(localStorage.getItem('cart'))
+    if(jsonobjs==null) {
+      jsonobjs=[];
+    }
     jsonobjs.push(toBeAdded);
     let indx = toBeAdded.FoodID;
     this.insertCartID(indx);
     this.cartItems.next(jsonobjs);
+    localStorage.setItem('cart',JSON.stringify(jsonobjs));
     console.log(jsonobjs)
     this.getTotalCost();
     alert('Order Placed for '+toBeAdded.foodName+' with quantity '+toBeAdded.quantity);
   }
 
   deleteObjectWoMessage(FoodID: number) {
+    /*
     let objs: any;
     this.cartItems.subscribe(p => {
       objs = p;
     })
     let strobjs = JSON.stringify(objs);
-    let jsonobjs = JSON.parse(strobjs);
+    */
+    let jsonobjs = JSON.parse(localStorage.getItem('cart'))
     const index = jsonobjs.findIndex(x => x.FoodID === FoodID);
     console.log(index);
     if (index !== -1) {
       jsonobjs.splice(index, 1);
       this.cartItems.next(jsonobjs);
+      localStorage.setItem('cart',JSON.stringify(jsonobjs));
       console.log(jsonobjs);
       this.removeCartID(FoodID);
     }
@@ -108,17 +117,21 @@ export class CartServicesService {
 
 
   deleteObject(FoodID: number) {
+    /*
     let objs: any;
     this.cartItems.subscribe(p => {
       objs = p;
     })
     let strobjs = JSON.stringify(objs);
     let jsonobjs = JSON.parse(strobjs);
+    */
+    let jsonobjs = JSON.parse(localStorage.getItem('cart'))
     const index = jsonobjs.findIndex(x => x.FoodID === FoodID);
     console.log(index);
     if (index !== -1) {
       jsonobjs.splice(index, 1);
       this.cartItems.next(jsonobjs);
+      localStorage.setItem('cart',JSON.stringify(jsonobjs));
       console.log(jsonobjs);
       this.removeCartID(FoodID);
       alert('Order Removed from Cart!')

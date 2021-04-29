@@ -1,21 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 import { CartServicesService } from '../cart-services.service';
 
 @Component({
   selector: 'app-chef-order',
   templateUrl: './chef-order.component.html',
-  styleUrls: ['./chef-order.component.css']
+  styleUrls: ['./chef-order.component.css'],
+  providers:[ApiService]
 })
 export class ChefOrderComponent implements OnInit {
   orders:any;
-  constructor(private ser:CartServicesService) { 
-    let tempOrd:any;
-    ser.cartItems.subscribe(p=> {
-      tempOrd=p;
+  constructor(private cart:CartServicesService,private ser:ApiService) { 
+    this.ser.getOrders().subscribe(p => {
+      this.orders=p;
+      console.log(this.orders);
+      for(let i=0;i<this.orders.length;i++) {
+        let name:string;
+        let temp:any;
+        this.ser.getMenuByID(this.orders[i].foodID).subscribe(p => {
+          temp=p;
+          name=temp.foodName;
+          this.orders[i]['name']=name;
+        })
+      }
     })
-    let strobjs=JSON.stringify(tempOrd);
-    this.orders=JSON.parse(strobjs);
-    console.log(this.orders);
   }
 
   ngOnInit(): void {

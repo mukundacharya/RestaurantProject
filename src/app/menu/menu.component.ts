@@ -49,23 +49,28 @@ export class MenuComponent implements OnInit {
     this.cart.deleteObject(m.FoodID);
   }
   viewOrdersAlert() {
+    /*
     let arr: any;
-    let alertText: string = "Your orders are";
+    
     this.cart.cartItems.subscribe(p => {
       arr = p;
     })
     let strobjs = JSON.stringify(arr);
-    let jsonobjs = JSON.parse(strobjs);
-    console.log(jsonobjs.length);
-    if (jsonobjs.length == 0) {
+    */
+    let alertText: string = "Your orders are";
+    let jsonobjs = JSON.parse(localStorage.getItem('cart'));
+    let cartarray=JSON.parse(localStorage.getItem('cartItemID'));
+    if (jsonobjs==null || cartarray==null || cartarray.length==0) {
       alert('No Orders Placed!')
     }
     else {
+      let cost: number = 0;
       let j: number;;
       for (j = 0; j < jsonobjs.length; j++) {
         alertText += "\n" + jsonobjs[j].foodName + " x " + jsonobjs[j].quantity;
+        cost+=jsonobjs[j].totalCost;
       }
-      let cost: number = this.cart.getTotalCost();
+      
       alertText += "\nYour Total price is ₹" + cost;
       console.log(alertText);
       alert(alertText);

@@ -14,14 +14,14 @@
         </thead>
         <tbody>
           <tr *ngFor="let o of orders">
-            <td>{{o.FoodID}}</td>
+            <td>{{o.orderID}}</td>
             <td >
-              {{o.foodName}}
+              {{o.name}}
             </td>
             <td>{{o.quantity}}</td>
             <td>
                     <label class="form-check-label" for="defaultCheck1">
-                        <button type="button" class="btn btn-danger btn_row_delete">Delete</button>
+                        <button type="button" class="btn btn-danger btn_row_delete">Complete</button>
                     </label></td>
           </tr>
         </tbody>
