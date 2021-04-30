@@ -22,8 +22,30 @@ export class ChefOrderComponent implements OnInit {
           name=temp.foodName;
           this.orders[i]['name']=name;
         })
+        let dt:any;
+        this.ser.getCustomerByID(this.orders[i].customerID).subscribe(p => {
+          temp=p;
+          dt=temp.dt;
+          this.orders[i]['dt']=dt;
+        })
       }
     })
+  }
+
+  onOrderComplete(id:number) {
+    let order:any;
+    this.ser.getOrderByID(id).subscribe(p => {
+      order=p;
+      console.log(order);
+      order['status']=false;
+      this.ser.putOrderStatus(id,order).subscribe(p => {
+        console.log(p);
+      })
+    })
+    alert('Order with orderID '+id+' completed! Well Done!');
+    window.location.reload();
+    
+
   }
 
   ngOnInit(): void {

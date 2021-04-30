@@ -76,6 +76,26 @@ export class MenuComponent implements OnInit {
       alert(alertText);
     }
   }
+  onSearchChange(searchValue: string): void {  
+    console.log(searchValue);
+    this.ser.getAllMenu().subscribe(p => {
+      this.menuItems = p;
+    });
+    return this.menuItems;
+  }
+
+  onSearchClick(str:string) {
+    let items:any;
+    this.ser.getAllMenu().subscribe(p => {
+      items = p;
+      console.log(p);
+    });
+    for(let i=0;i<items.length;i++) {
+      
+    }
+
+
+  }
 
   ngOnInit(): void {
   }

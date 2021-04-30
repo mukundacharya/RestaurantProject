@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
       if (pass == passhash) {
         alert('Hi ' + username + '! Login Successful!');
         if (user.designation == "Chef") {
+          localStorage.setItem('user',JSON.stringify({"username":user.username,"designation":user.designation}));
           this.route.navigate(['/chef']);
         }
         else {

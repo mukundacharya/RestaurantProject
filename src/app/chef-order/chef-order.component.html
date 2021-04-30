@@ -9,19 +9,21 @@
             <th class="head" >Order ID</th>
             <th class="head">Order</th>
             <th class="head">Quantity</th>
+            <th class="head">Order Time</th>
             <th class="head"style="width: 100px;">Status</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let o of orders">
+        <tbody *ngFor="let o of orders">
+          <tr *ngIf="o.status">
             <td>{{o.orderID}}</td>
             <td >
               {{o.name}}
             </td>
             <td>{{o.quantity}}</td>
+            <td>{{o.dt}}</td>
             <td>
                     <label class="form-check-label" for="defaultCheck1">
-                        <button type="button" class="btn btn-danger btn_row_delete">Complete</button>
+                        <button type="button" class="btn btn-danger btn_row_delete" (click)="onOrderComplete(o.orderID)">Complete</button>
                     </label></td>
           </tr>
         </tbody>

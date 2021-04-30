@@ -31,4 +31,14 @@ export class ApiService {
   getOrders():Observable<Object> {
     return this.http.get('http://localhost:51755/api/orders/');
   }
+  getCustomerByID(id:number):Observable<Object> {
+    return this.http.get('http://localhost:51755/api/customers/'+id);
+  }
+  getOrderByID(id:number):Observable<Object> {
+    return this.http.get('http://localhost:51755/api/orders/'+id);
+
+  }
+  putOrderStatus(id:number,data:any):Observable<Object> {
+    return this.http.put('http://localhost:51755/api/orders/'+id,data);
+  }
 }
