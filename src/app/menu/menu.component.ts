@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChildActivationStart } from '@angular/router';
 import { ApiService } from '../api.service';
 import { CartServicesService } from '../cart-services.service';
 
@@ -10,9 +11,11 @@ import { CartServicesService } from '../cart-services.service';
 })
 export class MenuComponent implements OnInit {
   menuItems: any;
+  menuItemsTemp:any;
   constructor(private ser: ApiService, private cart: CartServicesService) {
     this.ser.getAllMenu().subscribe(p => {
       this.menuItems = p;
+      this.menuItemsTemp=p;
       console.log(p);
     });
   }
@@ -77,24 +80,40 @@ export class MenuComponent implements OnInit {
     }
   }
   onSearchChange(searchValue: string): void {  
-    console.log(searchValue);
-    this.ser.getAllMenu().subscribe(p => {
-      this.menuItems = p;
-    });
-    return this.menuItems;
+    let items=[];
+    for(let i=0;i<this.menuItemsTemp.length;i++) {
+      if(this.menuItemsTemp[i].foodName.toLowerCase().includes(searchValue.toLowerCase())) {
+        items.push(this.menuItemsTemp[i]);
+      }
+    }
+    console.log(items);
+    this.menuItems=items;
   }
 
   onSearchClick(str:string) {
-    let items:any;
-    this.ser.getAllMenu().subscribe(p => {
-      items = p;
-      console.log(p);
-    });
-    for(let i=0;i<items.length;i++) {
-      
+
+  }
+
+
+
+  handleChange(evt:any) {
+    let target = evt.target;
+    let temp=[];
+    if(target.checked) {
+      console.log("checked");
+      for(let i=0;i<this.menuItems.length;i++) {
+        if(this.menuItems[i].isVeg) {
+          temp.push(this.menuItems[i]);
+        }
+      }
+      this.menuItems=temp;
     }
-
-
+    else {
+      console.log('unchecked')
+      this.ser.getAllMenu().subscribe( p => {
+        this.menuItems=p;
+      })
+    }
   }
 
   ngOnInit(): void {
