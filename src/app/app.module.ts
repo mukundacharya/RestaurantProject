@@ -15,6 +15,7 @@ import { ChefNavComponent } from './chef-nav/chef-nav.component';
 import { OrderPlacedComponent } from './order-placed/order-placed.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AllOrdersComponent } from './all-orders/all-orders.component';
+import { UpdateMenuComponent } from './update-menu/update-menu.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { AllOrdersComponent } from './all-orders/all-orders.component';
     OrderPlacedComponent,
     NavbarComponent,
     AllOrdersComponent,
+    UpdateMenuComponent,
   ],
   imports: [
     BrowserModule,

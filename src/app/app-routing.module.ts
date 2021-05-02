@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { OrderPlacedComponent } from './order-placed/order-placed.component';
+import { UpdateMenuComponent } from './update-menu/update-menu.component';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'cart',component:CartComponent},
   {path:'ordersuccess',component:OrderPlacedComponent},
   {path:'allorders',component:AllOrdersComponent,canActivate:[AuthGuard]},
+  {path:'menustatus',component:UpdateMenuComponent,canActivate:[AuthGuard]},
   {path:'',redirectTo:'/home',pathMatch:'prefix'},
   {path:'**',redirectTo:'/home',pathMatch:'prefix'},
 ];

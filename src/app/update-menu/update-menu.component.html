@@ -1,0 +1,39 @@
+<app-chef-nav></app-chef-nav>
+<div class="back" style="height: 730px;">
+    <h2 class="heading"> Menu Status </h2>
+    <div class="container" style="margin-top: 30px;">
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table table-bordered id bottom" id="result">
+                <thead style="background-color:#343a40;">
+                    <tr>
+                        <th class="head">Food ID</th>
+                        <th class="head">Food Name</th>
+                        <th class="head">Cost</th>
+                        <th class="head">Availability</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let m of menu">
+                    <tr>
+                        <td>{{m.FoodID}}</td>
+                        <td>{{m.foodName}}</td>
+                        <td>₹{{m.cost}}</td>
+                        <td *ngIf="m.isAvailable; else elseBlock;">
+                            <label class="form-check-label" for="defaultCheck1">
+                                <button type="button" class="btn btn-danger btn_row_delete" (click)="changeStatus(m.FoodID)">Make Unavailable</button>
+                            </label>
+                        </td>
+                        <ng-template #elseBlock>
+                            <td>
+                            <label class="form-check-label" for="defaultCheck1">
+                                <button type="button" class="btn btn-success btn_row_delete" (click)="changeStatus(m.FoodID)">Make Available</button>
+                            </label></td>
+                        </ng-template>
+
+                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

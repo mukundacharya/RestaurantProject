@@ -41,4 +41,8 @@ export class ApiService {
   putOrderStatus(id:number,data:any):Observable<Object> {
     return this.http.put('http://localhost:51755/api/orders/'+id,data);
   }
+
+  putMenuStatus(id:number,data:any):Observable<Object> {
+    return this.http.put('http://localhost:51755/api/menus/'+id,data)
+  }
 }
