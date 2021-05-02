@@ -1,24 +1,3 @@
-.order
-{
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 36px;
-    letter-spacing: 5px;
-    opacity: .9;
-}
-
-.quote
-{
-    margin-bottom: 40px;
-    padding-top: 20px;
-    font-family: 'Special Elite', cursive;
-    text-align: center;
-}
-.order
-{
-    margin-bottom: 20px;
-}
-
 .my-custom-scrollbar {
     position: relative;
     height: 500px;
@@ -64,7 +43,3 @@
 .head {
     color:white;
 }
-
-
-
-

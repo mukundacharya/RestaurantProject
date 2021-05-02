@@ -12,6 +12,9 @@ import { ContactComponent } from './contact/contact.component';
 import { ChefOrderComponent } from './chef-order/chef-order.component';
 import { CartComponent } from './cart/cart.component';
 import { ChefNavComponent } from './chef-nav/chef-nav.component';
+import { OrderPlacedComponent } from './order-placed/order-placed.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AllOrdersComponent } from './all-orders/all-orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +26,9 @@ import { ChefNavComponent } from './chef-nav/chef-nav.component';
     ChefOrderComponent,
     CartComponent,
     ChefNavComponent,
+    OrderPlacedComponent,
+    NavbarComponent,
+    AllOrdersComponent,
   ],
   imports: [
     BrowserModule,

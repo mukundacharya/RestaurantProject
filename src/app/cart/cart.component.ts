@@ -79,9 +79,7 @@ export class CartComponent implements OnInit {
     }
     localStorage.setItem('cart', JSON.stringify([]));
     localStorage.setItem('cartItemID', JSON.stringify([]));
-    let t = localStorage.getItem('orderID');
-    this.route.navigate(['/menu']);
-    alert('Order Successfully placed! We will let you know as soon as we prepare!');
+    this.route.navigate(['/ordersuccess']);
 
   }
 

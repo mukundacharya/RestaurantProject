@@ -93,9 +93,6 @@ export class MenuComponent implements OnInit {
   onSearchClick(str:string) {
 
   }
-
-
-
   handleChange(evt:any) {
     let target = evt.target;
     let temp=[];
