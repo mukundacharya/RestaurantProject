@@ -8,34 +8,40 @@ import { ApiService } from '../api.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers:[ApiService]
+  providers: [ApiService]
 })
 export class LoginComponent implements OnInit {
-  constructor(private ser:ApiService,private route:Router) { 
+  constructor(private ser: ApiService, private route: Router) {
   }
 
   ngOnInit(): void {
   }
-  onSubmit(data:any) {
-    let user:any;
-    const md5=new Md5();
-    let username=data.username;
-    let password=data.password;
+  onSubmit(data: any) {
+    let user: any;
+    const md5 = new Md5();
+    let username = data.username;
+    let password = data.password;
     this.ser.getUser(username).subscribe(p => {
-        user=p;
-        let pass=user.password;
-        let passhash=md5.appendStr(password).end();
-        if(pass==passhash) {
-          alert('Hi '+username+'! Login Successful!');
-          this.route.navigate(['/home']);
+      user = p;
+      let pass = user.password;
+      let passhash = md5.appendStr(password).end();
+      if (pass == passhash) {
+        alert('Hi ' + username + '! Login Successful!');
+        if (user.designation == "Chef") {
+          localStorage.setItem('user',JSON.stringify({"username":user.username,"designation":user.designation}));
+          this.route.navigate(['/chef']);
         }
         else {
-          alert('Password did not match! Try again!');
+          this.route.navigate(['/home']);
         }
+      }
+      else {
+        alert('Password did not match! Try again!');
+      }
     },
-    error => {
-      alert("Username doesn't exist!");
-    });
+      error => {
+        alert("Username doesn't exist!");
+      });
   }
 
 }

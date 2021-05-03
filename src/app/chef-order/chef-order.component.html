@@ -1,0 +1,36 @@
+<app-chef-nav></app-chef-nav>
+<div class="back" style="height: 1000PX;">
+    <h1 class="quote">" Sharpen your knives chefs "</h1>
+    <h3 class="order">ORDERS</h3>
+    <div class="container">
+      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+          <table class="table table-bordered id bottom" id="result">
+        <thead  style="background-color:#343a40;" >
+          <tr>
+            <th class="head" >Order ID</th>
+            <th class="head">Order</th>
+            <th class="head">Quantity</th>
+            <th class="head">Order Time</th>
+            <th class="head"style="width: 100px;">Status</th>
+          </tr>
+        </thead>
+        <ng-container *ngFor="let o of orders">
+        <tbody *ngIf="o.status">
+          <tr>
+            <td>{{o.orderID}}</td>
+            <td >
+              {{o.menu.foodName}}
+            </td>
+            <td>{{o.quantity}}</td>
+            <td>{{o.customerInfo.dt}}</td>
+            <td>
+                    <label class="form-check-label" for="defaultCheck1">
+                        <button type="button" class="btn btn-danger btn_row_delete" (click)="onOrderComplete(o.orderID)">Complete</button>
+                    </label></td>
+                  </tr>
+        </tbody>
+      </ng-container>
+      </table>
+    </div>
+    </div>  
+    </div>

@@ -9,6 +9,13 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { ChefOrderComponent } from './chef-order/chef-order.component';
+import { CartComponent } from './cart/cart.component';
+import { ChefNavComponent } from './chef-nav/chef-nav.component';
+import { OrderPlacedComponent } from './order-placed/order-placed.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AllOrdersComponent } from './all-orders/all-orders.component';
+import { UpdateMenuComponent } from './update-menu/update-menu.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +23,14 @@ import { ContactComponent } from './contact/contact.component';
     LoginComponent,
     MenuComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    ChefOrderComponent,
+    CartComponent,
+    ChefNavComponent,
+    OrderPlacedComponent,
+    NavbarComponent,
+    AllOrdersComponent,
+    UpdateMenuComponent,
   ],
   imports: [
     BrowserModule,

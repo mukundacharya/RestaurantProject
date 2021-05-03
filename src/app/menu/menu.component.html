@@ -7,9 +7,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a routerLink="/menu" class="nav-link" href="#">Menu</a>
+                </li>
 
                 <li class="nav-item">
-                    <a routerLink="/orderd-item" class="nav-link" href="#">Cart</a>
+                    <a routerLink="/cart" class="nav-link" href="#">Cart</a>
                 </li>
                 <li class="nav-item">
                     <a routerLink="/contact" class="nav-link" href="#">Contact Us</a>
@@ -17,11 +20,16 @@
                 <li class="nav-item">
                     <a routerLink="/about" class="nav-link" href="#">About</a>
                 </li>
+                <li class="nav-link">
+                <input type="checkbox" id="navbarCheckbox" class="navbar-checkbox" style="margin-right: 5px;" (change)="handleChange($event)" />
+                <label for="navbarCheckbox" title="Veg Only" style="color: white;">Veg Only</label>
+                </li>
 
             </ul>
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input class="form-control me-2" type="search" placeholder="Search Menu" aria-label="Search"
+                    (input)="onSearchChange($event.target.value)">
+                    <button routerLink='/login' class="btn btn-outline-success" type="submit">Login</button>
             </form>
         </div>
     </div>
@@ -64,7 +72,8 @@
 
     <div class="container">
         <div class="row mar">
-            <div class="col-lg-3 col-md-4 col-sm-12 mar1" *ngFor="let m of menuItems">
+        <ng-container *ngFor="let m of menuItems;">
+            <div class="col-lg-3 col-md-4 col-sm-12 mar1" *ngIf="m.isAvailable">
                 <div class="card" style="text-align: center;">
                     <img src="{{m.foodImage}}" id="img2" class="card-img-top" height="195px">
                     <div class="card-body">
@@ -75,20 +84,28 @@
                         <ng-template #elseBlock>
                             <h6><span style="color: red; font-weight: bold;">Non-Veg</span></h6>
                         </ng-template>
-                        <p class="card-text" style="font-weight: bold;">Rs. {{m.cost}}</p>
+                        <p class="card-text" style="font-weight: bold;">₹{{m.cost}}</p>
                         <p class="card-text">{{m.foodDescription}}</p>
                         <form style="margin-bottom: 10px;">
                             <input type="number" #qtytxtbox value="1" style="text-align: center" min="1" max="10"
                                 id="quantityTxt" />
                         </form>
-                        <button class="btn btn-primary" (click)="onSubmit(m,qtytxtbox.value)"
+                        <button class="btn btn-primary btnUpd" (click)="onSubmit(m,qtytxtbox.value)"
                             style="margin-bottom: 5px;;">Add To Cart</button><br>
-                        <button class="btn btn-danger" (click)="onDelete(m)">Remove from Cart</button>
-                        
+
                     </div>
                 </div>
             </div>
+        </ng-container>
         </div>
     </div>
+    <div class="bottomright">
+        <button type="button" class="btn btn-warning" (click)="viewOrdersAlert()">
+            View Orders
+        </button>
+
+    </div>
+
+
 
 </div>

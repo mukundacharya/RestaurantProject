@@ -1,0 +1,38 @@
+<app-chef-nav></app-chef-nav>
+<div class="back" style="height: 730px;">
+    <h2 class="heading"> Total Orders</h2>
+    <div class="container" style="margin-top: 30px;">
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table table-bordered id bottom" id="result">
+                <thead style="background-color:#343a40;">
+                    <tr>
+                        <th class="head">Order ID</th>
+                        <th class="head">Food Name</th>
+                        <th class="head">Cost per plate</th>
+                        <th class="head">Quantity</th>
+                        <th class="head">Total Cost</th>
+                        <th class="head">Order Status</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let o of orders">
+                    <tr>
+                        <td>{{o.orderID}}</td>
+                        <td>{{o.menu.foodName}}</td>
+                        <td>₹{{o.menu.cost}}</td>
+                        <td>{{o.quantity}}</td>
+                        <td>₹{{o.amount}}</td>
+                        <td *ngIf="o.status; else elseBlock;">
+                            <span style="color: red; font-weight: bold;">Pending</span>
+                        </td>
+                        <ng-template #elseBlock>
+                            <td style="color: green; font-weight: bold;">Completed</td>
+                        </ng-template>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="heading2">Total Earnings :₹{{totalCost}}</h2>
+
+    </div>
+</div>
