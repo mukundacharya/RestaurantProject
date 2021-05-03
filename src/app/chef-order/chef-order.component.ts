@@ -14,21 +14,6 @@ export class ChefOrderComponent implements OnInit {
     this.ser.getOrders().subscribe(p => {
       this.orders=p;
       console.log(this.orders);
-      for(let i=0;i<this.orders.length;i++) {
-        let name:string;
-        let temp:any;
-        this.ser.getMenuByID(this.orders[i].foodID).subscribe(p => {
-          temp=p;
-          name=temp.foodName;
-          this.orders[i]['name']=name;
-        })
-        let dt:any;
-        this.ser.getCustomerByID(this.orders[i].customerID).subscribe(p => {
-          temp=p;
-          dt=temp.dt;
-          this.orders[i]['dt']=dt;
-        })
-      }
     })
   }
 
@@ -37,9 +22,13 @@ export class ChefOrderComponent implements OnInit {
     this.ser.getOrderByID(id).subscribe(p => {
       order=p;
       console.log(order);
-      order['status']=false;
+      order.status=false;
+      delete order.customerInfo;
+      delete order.menu;
+      console.log(order);
       this.ser.putOrderStatus(id,order).subscribe(p => {
         console.log(p);
+        
       })
     })
     alert('Order with orderID '+id+' completed! Well Done!');

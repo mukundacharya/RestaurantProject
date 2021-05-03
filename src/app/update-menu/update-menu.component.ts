@@ -27,6 +27,8 @@ export class UpdateMenuComponent implements OnInit {
       else {
         menuItem.isAvailable=true;
       }
+      delete menuItem.orders;
+      //console.log(menuItem);
       this.ser.putMenuStatus(id,menuItem).subscribe( p=> {
         console.log(p);
       })

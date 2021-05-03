@@ -15,12 +15,6 @@ export class AllOrdersComponent implements OnInit {
       this.orders=p;
       for(let i=0;i<this.orders.length;i++) {
         this.totalCost+=this.orders[i].amount;
-        let temp:any;
-        this.ser.getMenuByID(this.orders[i].foodID).subscribe(p => {
-          temp=p;
-          this.orders[i]['name']=temp.foodName;
-          this.orders[i]['perplate']=temp.cost;
-        })
       }
     })
   }

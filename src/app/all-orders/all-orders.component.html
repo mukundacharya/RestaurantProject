@@ -17,15 +17,15 @@
                 <tbody *ngFor="let o of orders">
                     <tr>
                         <td>{{o.orderID}}</td>
-                        <td>{{o.name}}</td>
-                        <td>₹{{o.perplate}}</td>
+                        <td>{{o.menu.foodName}}</td>
+                        <td>₹{{o.menu.cost}}</td>
                         <td>{{o.quantity}}</td>
                         <td>₹{{o.amount}}</td>
                         <td *ngIf="o.status; else elseBlock;">
-                            <span>Pending</span>
+                            <span style="color: red; font-weight: bold;">Pending</span>
                         </td>
                         <ng-template #elseBlock>
-                            <td>Completed</td>
+                            <td style="color: green; font-weight: bold;">Completed</td>
                         </ng-template>
                     </tr>
                 </tbody>

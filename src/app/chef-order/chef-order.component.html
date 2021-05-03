@@ -14,20 +14,22 @@
             <th class="head"style="width: 100px;">Status</th>
           </tr>
         </thead>
-        <tbody *ngFor="let o of orders">
-          <tr *ngIf="o.status">
+        <ng-container *ngFor="let o of orders">
+        <tbody *ngIf="o.status">
+          <tr>
             <td>{{o.orderID}}</td>
             <td >
-              {{o.name}}
+              {{o.menu.foodName}}
             </td>
             <td>{{o.quantity}}</td>
-            <td>{{o.dt}}</td>
+            <td>{{o.customerInfo.dt}}</td>
             <td>
                     <label class="form-check-label" for="defaultCheck1">
                         <button type="button" class="btn btn-danger btn_row_delete" (click)="onOrderComplete(o.orderID)">Complete</button>
                     </label></td>
-          </tr>
+                  </tr>
         </tbody>
+      </ng-container>
       </table>
     </div>
     </div>  
