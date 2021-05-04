@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-placed.component.css']
 })
 export class OrderPlacedComponent implements OnInit {
-  orderID:number;
+  customerID:number;
   constructor() { 
-    this.orderID=parseInt(localStorage.getItem('orderID'));
-    localStorage.removeItem('orderID');
+    this.customerID=parseInt(localStorage.getItem('customerID'));
+    localStorage.removeItem('customerID');
   }
 
   ngOnInit(): void {

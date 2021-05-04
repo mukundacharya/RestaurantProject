@@ -7,6 +7,7 @@
                 <thead style="background-color:#343a40;">
                     <tr>
                         <th class="head">Order ID</th>
+                        <th class="head">Customer ID</th>
                         <th class="head">Food Name</th>
                         <th class="head">Cost per plate</th>
                         <th class="head">Quantity</th>
@@ -17,6 +18,7 @@
                 <tbody *ngFor="let o of orders">
                     <tr>
                         <td>{{o.orderID}}</td>
+                        <td>{{o.customerInfo.customerID}}</td>
                         <td>{{o.menu.foodName}}</td>
                         <td>₹{{o.menu.cost}}</td>
                         <td>{{o.quantity}}</td>

@@ -8,6 +8,7 @@
         <thead  style="background-color:#343a40;" >
           <tr>
             <th class="head" >Order ID</th>
+            <th class="head" >Customer ID</th>
             <th class="head">Order</th>
             <th class="head">Quantity</th>
             <th class="head">Order Time</th>
@@ -18,6 +19,7 @@
         <tbody *ngIf="o.status">
           <tr>
             <td>{{o.orderID}}</td>
+            <td>{{o.customerInfo.customerID}}</td>
             <td >
               {{o.menu.foodName}}
             </td>

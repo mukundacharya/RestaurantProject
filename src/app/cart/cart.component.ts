@@ -70,7 +70,7 @@ export class CartComponent implements OnInit {
       let temp: any;
       this.ser.postOrder(order).subscribe(p => {
         temp = p;
-        localStorage.setItem('orderID', temp.orderID);
+        localStorage.setItem('customerID', id.toString());
       },
         error => {
           alert('Order Could not be placed!');
