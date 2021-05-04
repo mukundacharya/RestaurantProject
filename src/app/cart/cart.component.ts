@@ -79,7 +79,9 @@ export class CartComponent implements OnInit {
     }
     localStorage.setItem('cart', JSON.stringify([]));
     localStorage.setItem('cartItemID', JSON.stringify([]));
-    this.route.navigate(['/ordersuccess']);
+    setTimeout(function(){
+      window.location.href = 'http://localhost:4200/ordersuccess';
+   }, 1000);
 
   }
 
